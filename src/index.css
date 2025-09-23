@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark mode base styles */
+html.dark {
+  background-color: #18181b;
+  color: #f4f4f5;
+}
+
+body.dark {
+  background-color: #18181b;
+  color: #f4f4f5;
+}
+
+/* Example for card/surface */
+.dark .bg-white {
+  background-color: #23232a !important;
+}
+.dark .text-gray-900 {
+  color: #f4f4f5 !important;
+}
+.dark .text-gray-700 {
+  color: #e4e4e7 !important;
+}
+.dark .text-gray-600 {
+  color: #a1a1aa !important;
+}
+.dark .border-gray-200 {
+  border-color: #27272a !important;
+}
+.dark .border-gray-300 {
+  border-color: #3f3f46 !important;
+}
+.dark .bg-gray-50 {
+  background-color: #23232a !important;
+}
+.dark .bg-white\/80 {
+  background-color: rgba(35,35,42,0.8) !important;
+}
+.dark .bg-blue-600 {
+  background-color: #6366f1 !important;
+}
+.dark .hover\:bg-gray-100:hover {
+  background-color: #27272a !important;
+}
+
+/* Dark mode submenu dropdown fix */
+.dark .bg-white {
+  background-color: #23232a !important;
+}
+.dark .hover\:bg-gray-100:hover,
+.dark .hover\:bg-gray-100 {
+  background-color: #27272a !important;
+}
+.dark .hover\:text-blue-600:hover {
+  color: #6366f1 !important;
+}
+
+/* Custom scrollbar for cart drawer */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E0 #F7FAFC;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #F7FAFC;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #CBD5E0;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #A0AEC0;
+}
+
+/* Smooth drawer animations */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.drawer-enter {
+  animation: slideInFromRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.drawer-exit {
+  animation: slideOutToRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Cart item hover effects */
+.cart-item-hover {
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cart-item-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced spring animations */
+@keyframes drawerSpringIn {
+  0% {
+    transform: translateX(100%) scale(0.95);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-10px) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes drawerSpringOut {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(-10px) scale(0.98);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(100%) scale(0.95);
+    opacity: 0;
+  }
+}
+
+.drawer-spring-enter {
+  animation: drawerSpringIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.drawer-spring-exit {
+  animation: drawerSpringOut 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+/* Smooth backdrop fade */
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+  }
+}
+
+@keyframes backdropFadeOut {
+  from {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+  }
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+.backdrop-fade-in {
+  animation: backdropFadeIn 0.4s ease-out;
+}
+
+.backdrop-fade-out {
+  animation: backdropFadeOut 0.25s ease-in;
+}
+
+/* Loading spinner for cart items */
+@keyframes cartSpinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.cart-loading-spinner {
+  animation: cartSpinner 0.8s linear infinite;
+}
+
+/* Pulse effect for updating items */
+@keyframes gentlePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.gentle-pulse {
+  animation: gentlePulse 1s ease-in-out;
+}
