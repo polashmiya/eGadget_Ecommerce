@@ -515,9 +515,9 @@ export function ProductsPage() {
 
             {/* Products Grid */}
             {filteredProducts.length > 0 ? (
-              <div className={`grid gap-6 ${
+              <div className={`grid gap-x-8 gap-y-8 px-2 sm:px-0 ${
                 viewMode === 'grid' 
-                  ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5' 
+                  ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4' 
                   : 'grid-cols-1'
               }`}>
                 {filteredProducts.map((product) => (
