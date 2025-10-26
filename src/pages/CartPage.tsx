@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from 'framer-motion';
 import { useAppContext } from "../context/AppContext";
 
 export function CartPage() {
@@ -12,7 +13,12 @@ export function CartPage() {
 
   if (cart.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <motion.div className="min-h-screen bg-gray-50"
+        initial={{ opacity: 0, y: 32 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -32 }}
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
+      >
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-md mx-auto text-center">
             <svg
@@ -42,12 +48,18 @@ export function CartPage() {
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <motion.div
+      className="min-h-screen bg-gray-50"
+      initial={{ opacity: 0, y: 32 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -32 }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}
+    >
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
 
@@ -377,6 +389,6 @@ export function CartPage() {
           </div>
         </div>
       </div>
-    </div>
+  </motion.div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useAppContext } from '../context/AppContext';
 import type { Address } from '../types';
 
@@ -102,8 +103,14 @@ export const ProfilePage: React.FC = () => {
     { id: 'security', label: 'Security' }
   ];
 
-  return (
-    <div className="container mx-auto px-4 py-8">
+  return (  
+    <motion.div
+      initial={{ opacity: 0, y: 32 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -32 }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}
+    >
+      <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-8">My Account</h1>
         
@@ -469,5 +476,6 @@ export const ProfilePage: React.FC = () => {
         )}
       </div>
     </div>
+    </motion.div>
   );
 };

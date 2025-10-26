@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import type { Product } from '../types';
 import { useApp } from '../context/AppContext';
+import { motion, useAnimation } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
 interface ProductCardProps {
   product: Product;
@@ -9,6 +11,23 @@ interface ProductCardProps {
 
 export function ProductCard({ product, className = '' }: ProductCardProps) {
   const { addToCart, openCartDrawer } = useApp();
+  const controls = useAnimation();
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const handleScroll = () => {
+      const rect = node.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 80) {
+        controls.start({ opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } });
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [controls]);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -61,7 +80,12 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
     : 0;
 
   return (
-    <div className={`group relative bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-lg transition-shadow duration-200 flex flex-col justify-between ${className}`}>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={controls}
+      className={`group relative bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-lg transition-shadow duration-200 flex flex-col justify-between ${className}`}
+    >
       <Link to={`/product/${product.id}`} className="flex-1 flex flex-col">
         {/* Product Image */}
         <div className="relative aspect-square overflow-hidden rounded-t-lg">
@@ -170,6 +194,6 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
           <span>Add to Cart</span>
         </button>
       </div>
-    </div>
+  </motion.div>
   );
 }

@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+// ...existing code...
 import { ProductCard } from '../components/ProductCard';
 import { sampleProducts } from '../data/products';
 
@@ -6,8 +8,26 @@ export function HomePage() {
   const featuredProducts = sampleProducts.filter(product => product.featured).slice(0, 8);
   const newProducts = sampleProducts.slice(0, 8);
 
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
+  };
+  const gridVariants = {
+    visible: { transition: { staggerChildren: 0.08 } },
+  };
+  const cardVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+  };
+
   return (
-    <div className="min-h-screen">
+    <motion.div
+      className="min-h-screen"
+      initial={{ opacity: 0, y: 32 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -32 }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}
+    >
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-600 to-purple-700 text-white">
         <div className="container mx-auto px-4 py-20">
@@ -222,6 +242,6 @@ export function HomePage() {
           </p>
         </div>
       </section>
-    </div>
+  </motion.div>
   );
 }

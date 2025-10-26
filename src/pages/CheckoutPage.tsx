@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import type { Address } from '../types';
+import { motion } from 'framer-motion';
 
 export const CheckoutPage: React.FC = () => {
   const { cart, user, clearCart } = useAppContext();
@@ -22,6 +23,7 @@ export const CheckoutPage: React.FC = () => {
   });
 
   const [billingAddress, setBillingAddress] = useState<Address>(shippingAddress);
+
   const [sameAsShipping, setSameAsShipping] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState('credit-card');
   const [cardDetails, setCardDetails] = useState({

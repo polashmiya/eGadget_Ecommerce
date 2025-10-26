@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import type { Order } from '../types';
+import { motion } from 'framer-motion';
 
 export function OrdersPage() {
   const { user } = useApp();
@@ -225,7 +226,13 @@ export function OrdersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <motion.div
+      initial={{ opacity: 0, y: 32 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -32 }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}
+    >
+      <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-sm">
           <div className="border-b border-gray-200 p-6">
@@ -361,5 +368,6 @@ export function OrdersPage() {
         </div>
       </div>
     </div>
+    </motion.div>
   );
 }
