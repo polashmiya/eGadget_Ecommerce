@@ -230,13 +230,20 @@ export function Header() {
               </Link>
               
               {/* Dropdown Menu */}
-              <div className={`absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-lg border z-50 transition-all duration-200 ${
-                activeDropdown === category.name 
-                  ? 'opacity-100 visible transform translate-y-0' 
-                  : 'opacity-0 invisible transform -translate-y-2'
-              }`}>
+              <div
+                className={`absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-lg border z-50 overflow-hidden transition-all duration-400 ${
+                  activeDropdown === category.name
+                    ? 'opacity-100 visible translate-y-0'
+                    : 'opacity-0 invisible -translate-y-2'
+                }`}
+                style={{
+                  maxHeight: activeDropdown === category.name ? '500px' : '0px',
+                  transition: 'max-height 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.3s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1)'
+                }}
+              >
                 <div className="py-2">
-                  {category.subcategories.map((subcategory) => (                    <Link
+                  {category.subcategories.map((subcategory) => (
+                    <Link
                       key={subcategory}
                       to={`/products?category=${encodeURIComponent(category.name)}&subcategory=${encodeURIComponent(subcategory)}`}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
