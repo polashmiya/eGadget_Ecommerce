@@ -8,17 +8,7 @@ export function HomePage() {
   const featuredProducts = sampleProducts.filter(product => product.featured).slice(0, 8);
   const newProducts = sampleProducts.slice(0, 8);
 
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
-  };
-  const gridVariants = {
-    visible: { transition: { staggerChildren: 0.08 } },
-  };
-  const cardVariants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-  };
+
 
   return (
     <motion.div

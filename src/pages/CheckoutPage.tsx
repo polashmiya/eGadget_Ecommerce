@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import type { Address } from '../types';
-import { motion } from 'framer-motion';
+
 
 export const CheckoutPage: React.FC = () => {
   const { cart, user, clearCart } = useAppContext();

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
@@ -10,8 +10,8 @@ interface CartDrawerProps {
 
 export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { cart, removeFromCart, updateCartQuantity, getCartTotal, getCartItemsCount } = useAppContext();
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
+  const [isAnimating] = useState(false);
+  // Removed setIsAnimating and isClosing as they are unused
   const [updatingItems, setUpdatingItems] = useState<Set<string>>(new Set());
 
   const subtotal = getCartTotal();
@@ -79,10 +79,8 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                 </h2>
                 <button
                   onClick={() => {
-                    setIsClosing(true);
                     setTimeout(() => {
                       onClose();
-                      setIsClosing(false);
                     }, 250);
                   }}
                   className="rounded-full p-2 hover:bg-gray-100 transition-colors duration-200 ease-in-out group"
